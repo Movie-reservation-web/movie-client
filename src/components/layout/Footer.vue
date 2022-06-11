@@ -1,80 +1,45 @@
 <template>
-  <div class="container">
-    <footer class="pt-5">
-      <div class="container">
-        <div class="row text-white">
-          <div class="col-md-3">
-            <div class="fs-2">
-              <router-link tag="a" to="/" class="align-content-md-center">
-                <img alt="logo" :src="logoUrl" />
-              </router-link>
-              <p class="mt-3 text-white-50">{{ $t("footer.info") }}</p>
-            </div>
-          </div>
+  <footer>
+    <ul class="policy_list">
+      <li><a href="/" target="_blank">회사소개</a></li>
+      <li><a href="/" target="_blank">IR</a></li>
+      <li><a href="/" target="_blank">채용정보</a></li>
+      <li><a href="/" target="_blank">광고/제휴/출점문의</a></li>
+      <li><a href="/">이용약관</a></li>
+      <li><a href="/">편성기준</a></li>
+      <li><a href="/"><strong>개인정보처리방침</strong></a></li>
+      <li><a href="/">법적고지</a></li>
+      <li><a href="/">이메일주소무단수집거부</a></li>
+      <li><a href="/" target="_blank">윤리경영</a></li>
+      <li><a href="/" class="empha-red">사이버감사실</a></li>
+    </ul>
+    <article class="company_info_wrap">
+      <section class="company_info">
+        <address>[추후 기재]</address>
+        <dl class="company_info_list">
+          <dt>대표이사</dt>
+          <dd>[추후 기재]</dd>
+          <dt>사업자등록번호</dt>
+          <dd>[추후 기재]</dd>
+          <dt>통신판매업신고번호</dt>
+          <dd>[추후 기재]<a href="#none" onclick="goFtc()" class="btn_goFtc">사업자정보확인</a><a></a></dd>
+        </dl>
+        <dl class="company_info_list">
+          <dt>호스팅사업자</dt>
+          <dd>[추후 기재]</dd>
+          <dt>개인정보보호 책임자</dt>
+          <dd>[추후 기재]</dd>
+          <dt>대표이메일</dt>
+          <dd>[추후 기재]</dd>
 
-          <div class="col-2">
-            <h5>{{ $t("footer.menu.link") }}</h5>
-            <ul class="nav flex-column">
-              <li class="nav-item mb-2" v-for="menu in footerMenus" :key="menu">
-                <router-link
-                  tag="a"
-                  to="/"
-                  class="nav-li nk p-0 text-white-50"
-                  >{{ $t("menu." + menu) }}</router-link
-                >
-              </li>
-            </ul>
-          </div>
-          <div class="col-2">
-            <h5>{{ $t("menu.tCustomerCenter") }}</h5>
-            <ul class="nav flex-column">
-              <li
-                class="nav-item mb-2"
-                v-for="menu in customerCenterMenus"
-                :key="menu"
-              >
-                <router-link
-                  tag="a"
-                  to="/"
-                  class="nav-link p-0 text-white-50"
-                  >{{ $t("menu.customerCenter." + menu) }}</router-link
-                >
-              </li>
-            </ul>
-          </div>
-          <div class="col-4">
-            <form>
-              <h5>{{ $t("footer.menu.news.letter") }}</h5>
-              <p class="text-white-50">{{ $t("footer.menu.news.info") }}</p>
-              <div class="d-flex w-100 gap-2">
-                <label for="newsletter1" class="visually-hidden"
-                  >Email address</label
-                >
-                <input
-                  id="newsletter1"
-                  type="text"
-                  class="form-control"
-                  placeholder="Email address"
-                />
-                <button class="btn btn-outline-light w-50" type="button">
-                  {{ $t("footer.menu.news.subscribe") }}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-
-      <div class="d-flex justify-content-between py-4 my-0 border-top">
-        <p>&copy; 2021 Company, Inc. All rights reserved.</p>
-      </div>
-    </footer>
-  </div>
+        </dl>
+        <p class="copyright">© I.CINEMA. All Rights Reserved</p>
+      </section>
+    </article>
+  </footer>
 </template>
 
 <script>
-import { useStore } from "vuex";
-import { computed } from "vue";
 
 export default {
   name: "main-footer",
@@ -82,27 +47,8 @@ export default {
     return {};
   },
   setup() {
-    const store = useStore();
-    const logoUrl = computed(() => {
-      return store.state.footerLogo;
-    });
-    const customerCenterMenus = computed(() => {
-      return store.state.customerCenterMenus;
-    });
-    const footerMenus = computed(() => {
-      return store.state.footerMenus;
-    });
-    return { logoUrl, customerCenterMenus, footerMenus };
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>
-.b-example-divider {
-  height: 3rem;
-  background-color: rgba(0, 0, 0, 0.1);
-  border: solid rgba(0, 0, 0, 0.15);
-  border-width: 1px 0;
-  box-shadow: inset 0 0.5em 1.5em rgb(0 0 0 / 10%),
-    inset 0 0.125em 0.5em rgb(0 0 0 / 15%);
-}
 </style>

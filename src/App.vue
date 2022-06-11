@@ -4,28 +4,31 @@
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css"
   />
   <div id="app">
-    <div id="header">
-      <Header/>
+    <HeaderAd />
+    <div id="header" class="header">
+      <Header />
     </div>
-    <router-view/>
+    <router-view />
     <div id="footer">
-      <Footer/>
+      <Footer />
     </div>
   </div>
 </template>
 
 <script>
-import Header from '@/components/layout/Header.vue'
-import Footer from '@/components/layout/Footer.vue'
-import '@/assets/css/style.css'
+import HeaderAd from "./components/layout/HeaderAd";
+import Header from "@/components/layout/Header.vue";
+import Footer from "@/components/layout/Footer.vue";
+import "@/assets/css/style.css";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
+    HeaderAd,
     Header,
     Footer
   }
-}
+};
 </script>
 <style scoped>
 #footer {
