@@ -5,6 +5,7 @@ const store = createStore({
   state() {
     return {
       logo: require("@/assets/img/logo.png"),
+      logo_reverse: require("@/assets/img/logo_reverse.png"),
       myPageLogo: require("@/assets/img/logo/mypage.png"),
       loginLogo: require("@/assets/img/logo/login.png"),
       logoutLogo: require("@/assets/img/logo/logout.png"),

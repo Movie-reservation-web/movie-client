@@ -57,16 +57,17 @@
 </template>
 
 <script>
-import { useLogin } from '@/composables/login'
-import { computed, ref } from 'vue'
-import { useStore } from 'vuex'
-import { useRouter } from 'vue-router'
+import {useLogin} from '@/composables/login'
+import {computed, ref} from 'vue'
+import {useStore} from 'vuex'
+import {useRouter} from 'vue-router'
 import Input from '@/components/slot/Input'
 import PasswordInput from '@/components/slot/PasswordInput'
 import FormButton from '@/components/slot/FormButton'
 import ErrorField from '@/components/slot/ErrorField'
 import FormLogo from '@/components/slot/FormLogo'
 import RadioInput from '@/components/slot/RadioInput'
+
 export default {
   name: 'RegisterUserInfo',
   components: {
@@ -75,9 +76,8 @@ export default {
     Input,
     PasswordInput,
     FormButton,
-    RadioInput,
   },
-  setup () {
+  setup() {
     const {
       error,
       login,
@@ -92,7 +92,7 @@ export default {
     const handleSubmit = async () => {
       await login(username.value, password.value)
       if (store.getters['auth/isLoggedIn']) {
-        await router.push({ name: 'Home' })
+        await router.push({name: 'Home'})
       }
     }
 
@@ -133,11 +133,6 @@ export default {
   padding: 7em 0;
 }
 
-.login-wrap .icon span {
-  color: #fff;
-}
-
-/* Hide the browser's default checkbox */
 .checkbox-wrap input {
   position: absolute;
   opacity: 0;
@@ -146,12 +141,4 @@ export default {
   width: 0;
 }
 
-.checkbox-primary input:checked ~ .checkmark:after {
-  color: #135762;
-}
-
-a,
-a:hover {
-  color: #135762;
-}
 </style>

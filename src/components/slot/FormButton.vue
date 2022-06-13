@@ -1,15 +1,15 @@
 <template>
   <div class="form-group">
     <button
-        v-if="!isPending"
-        class="form-control btn btn-primary rounded submit mt-3 px-3"
+      v-if="!isPending"
+      class="form-control btn btn-primary rounded submit mt-3 px-3"
     >
       {{ label }}
     </button>
     <button
-        v-if="isPending"
-        class="form-control btn btn-primary rounded submit mt-3 px-3"
-        disabled
+      v-if="isPending"
+      class="form-control btn btn-primary rounded submit mt-3 px-3"
+      disabled
     >
       Loading
     </button>
@@ -21,18 +21,17 @@ export default {
   props: {
     label: {
       type: String,
-      required: true
+      required: true,
     },
     isPending: {
       type: Boolean,
-      required: true
+      required: true,
     },
   },
   setup() {
-    return {}
-  }
-}
-
+    return {};
+  },
+};
 </script>
 <style scoped>
 .form-group {
@@ -44,7 +43,7 @@ export default {
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 1px;
-  color: #135762;
+  color: #943939;
 }
 
 .form-control {
@@ -83,7 +82,7 @@ export default {
   outline: none;
   -webkit-box-shadow: none;
   box-shadow: none;
-  border: 1px solid #135762;
+  border: 1px solid #943939;
 }
 
 .btn {
@@ -101,18 +100,17 @@ export default {
 }
 
 .btn.btn-primary {
-  background: #135762;
+  background: #943939;
   border: none;
-  color: #fff;
+  color: #ffdfa2;
   text-transform: uppercase;
-  box-shadow: -6px -6px 5px rgba(228, 226, 226, 0.8), 3px 3px 10px;
+  box-shadow: -6px -6px 5px rgba(201, 140, 110, 0.8), 3px 3px 10px;
 }
 
 .btn.btn-primary:hover {
-  background: #fff1f1;
-  color: #135762;
-  box-shadow: inset -3px -3px 5px rgba(225, 225, 225, 0.5),
-  inset 8px 0px 16px rgba(0, 0, 0, 0.1);
+  background: #ffdfa2;
+  color: #943939;
+  box-shadow: inset -3px -3px 5px rgba(201, 140, 110, 0.5),
+    inset 8px 0px 16px rgba(201, 140, 110, 0.1);
 }
-
 </style>

@@ -58,7 +58,7 @@ export default {
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 1px;
-  color: #135762;
+  color: #943939;
 }
 
 .form-control {
@@ -97,7 +97,7 @@ export default {
   outline: none;
   -webkit-box-shadow: none;
   box-shadow: none;
-  border: 1px solid #135762;
+  border: 1px solid #943939;
 }
 
 </style>
