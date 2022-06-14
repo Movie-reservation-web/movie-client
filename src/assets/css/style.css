@@ -532,9 +532,52 @@ footer .familysite_wrap .btn_familysite{display:inline-flex; justify-content:cen
 
 
 
+/* =============================
+ 영화상세 Style
+============================= */
+/* 영화상세 - 기본정보  */
+.state{ border:1px solid blue; }
+.title p{ font-size:12px; font-family:Verdana, Geneva, sans-serif;}
+/* .wrap-movie-detail .sect-base{} */
+.wrap-movie-detail .cols-content{ margin-top:30px;}
+/* [class|="sect-base"][class$="movie"]{} */
+[class|="sect-base"][class$="movie"] .box-image{ margin-right:30px;width:185px;height:260px}
+[class|="sect-base"][class$="movie"] .thumb-image img{ width:185px; height:260px;}
+[class|="sect-base"][class$="movie"] .box-contents{ width:765px; }
+[class|="sect-base"][class$="movie"] .box-contents .like > .round {margin-left:4px; font-size:15px; line-height:29px; vertical-align:middle;}
+[class|="sect-base"][class$="movie"] .box-contents .like > .round > * {padding:0 10px;}
+[class|="sect-base"][class$="movie"] .spec{ padding-top:18px; line-height:1.6;}
+[class|="sect-base"][class$="movie"] .spec:after{ content:''; display:block; clear:both;}
+[class|="sect-base"][class*="movie"] .spec dd{ float:left;}
+[class|="sect-base"][class*="movie"] .spec dd {white-space:normal; text-overflow:clip; overflow:visible;}
+[class|="sect-base"][class$="movie"] .spec .on{ float:none; }
+[class|="wrap-movie"][class$="detail"] .heading{ margin-bottom:20px;}
+[class|="wrap-movie"][class$="detail"] [class^="sect-"]{ padding-top:40px;}
+[class|="wrap-movie"][class$="detail"] .showtimes-wrap .sect-city{ margin-top:20px;}
+[class|="wrap-movie"][class$="detail"] .showtimes-wrap .sect-schedule{ margin-top:0;}
+[class|="wrap-movie"][class$="detail"] .showtimes-wrap .sect-guide{ margin-top:0;}
+[class|="sect-story"][class*="movie"]{ margin-top:35px; color:#333333; line-height:1.8;}
+[class|="sect-story"][class*="movie"] strong{ font-size:13px; }
+[class|="sect-story"][class*="movie"] p{ margin-top:10px; font-size:12px; line-height:2;}
 
 
 
+/* =============================
+ ICON Style
+============================= */
+
+/* 영화포스터 크게 보기 +  */
+.ico-posterdetail{ display:block; position:absolute; left:4px; bottom:3px; width:24px; height:24px; background:url('~@/assets/img/ico/sprite_icon.png') 0 0 no-repeat; font:0/0 a;zoom:1;}
+
+/* ico 영화등급 */
+.ico-grade{ display:block; position:absolute; left:5px; top:5px; width:21px; height:21px; background:url('~@/assets/img/ico/sprite_icon.png') no-repeat;font:0/0 a;zoom:1;}
+.ico-grade.grade-all{ background-position:-30px 0;}/* 전체 */
+.ico-grade.grade-12{ background-position:-51px 0;}/* 12세 */
+.ico-grade.grade-15{ background-position:-72px 0;}/* 15세 */
+.ico-grade.grade-19{ background-position:-93px 0;}/* 청불 */
+.ico-grade.grade-none{ background-position:-114px 0;}/* 미정 */
+.eng .ico-grade.grade-all{ background-position:-135px 0;}/* 영어전체 */
+.eng .ico-grade.grade-19{ background-position:-156px 0;}/* 영어 청불 */
 
 
 
