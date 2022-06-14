@@ -8,11 +8,11 @@ export const useMovie = () => {
 
   const movieChart = computed(() => store.getters["movie/movieChart"]);
 
-  const getMovieChart = async () => {
+  const getMovieChart = async (isReleased) => {
     error.value = null;
     isPending.value = true;
     try {
-      await store.dispatch("movie/getMovieChart");
+      await store.dispatch("movie/getMovieChart", isReleased);
       error.value = null;
       isPending.value = false;
     } catch (err) {

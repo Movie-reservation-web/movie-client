@@ -476,7 +476,7 @@ footer .familysite_wrap .btn_familysite{display:inline-flex; justify-content:cen
 .movieChart_list .carousel__track .carousel__slide .img_wrap:hover .movieChart_btn_wrap a.btn_movieChart_detail{color:#666; background-color:#fff}
 .movieChart_list .carousel__track .carousel__slide .img_wrap:hover .movieChart_btn_wrap a.btn_movieChart_ticketing{color:#fff; background-color:#fb4357}
 
-.movieChart_list .carousel__track .carousel__slide .movie_info_wrap{display:flex; flex-wrap:wrap}
+.movieChart_list .carousel__track .carousel__slide .movie_info_wrap{display:flex; flex-wrap:wrap; justify-content: center;}
 .movieChart_list .carousel__track .carousel__slide .movie_info_wrap .movieName{display:block; flex-basis:100%; overflow:hidden; margin-top:14px; font-size:18px; color:#222; line-height:1.167em; text-align:center; text-overflow:ellipsis; white-space:nowrap}
 .movieChart_list .carousel__track .carousel__slide .movie_info_wrap > span{display:block; float:left; margin-top:9px; font-size:14px; color:#444; line-height:1.214em}
 .movieChart_list .carousel__track .carousel__slide .movie_info_wrap > span ~ span{position:relative; padding-left:16px}
@@ -515,7 +515,7 @@ footer .familysite_wrap .btn_familysite{display:inline-flex; justify-content:cen
 .movieSelection_wrap .contents .movieSelection_video_controller_wrap .btn_movieSelection_playStop{display:block; margin-left:10px; width:28px; height:28px; font-size:0; background:transparent url('~@/assets/img/ico/play.png') center/18px scroll no-repeat; border:1px solid #979797; border-radius:50%}
 .movieSelection_wrap .contents .movieSelection_video_controller_wrap .btn_movieSelection_playStop.active{background:transparent url('~@/assets/img/ico/pause.png') center/18px scroll no-repeat;}
 .movieSelection_wrap .contents .movieSelection_video_controller_wrap .btn_movieSelection_soundOnOff{display:block; margin-left:10px; width:28px; height:28px; font-size:0; background:transparent url("~@/assets/img/ico/soundOff.png") center/18px scroll no-repeat; border:1px solid #979797; border-radius:50%}
-.movieSelection_wrap .contents .movieSelection_video_controller_wrap .btn_movieSelection_soundOnOff.active{background:transparent url('~@/assets/img/ico/arrowR.png') center/18px scroll no-repeat;}
+.movieSelection_wrap .contents .movieSelection_video_controller_wrap .btn_movieSelection_soundOnOff.active{background:transparent url('~@/assets/img/ico/soundOn.png') center/18px scroll no-repeat;}
 
 .movieChartBeScreen_wrap{clear:none; float:none; background-image:linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(232, 232, 232, 0.37))}
 .movieChartBeScreen_wrap .contents{overflow:hidden; margin-left:-30px; padding:50px 30px 60px}

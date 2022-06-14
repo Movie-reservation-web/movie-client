@@ -1,7 +1,7 @@
 <template>
   <div style="width: 170.4px; margin-right: 32px; justify-content: start">
     <div class="img_wrap" data-scale="false">
-      <img :src="movieProfile.image" :alt="movieProfile.title" />
+      <img :src="movieProfile.image" :alt="movieProfile.title"/>
       <div class="movieAgeLimit_wrap">
         <img
           :src="
@@ -9,18 +9,21 @@
           "
           :alt="movieProfile.filmRating.value"
         />
+        <div class="dDay_wrap" v-if="isReleased(movieProfile.releaseDate)">
+          <span>{{ calcD_day(movieProfile.releaseDate)}}</span>
+        </div>
       </div>
       <div class="screenType_wrap"></div>
       <div class="movieChart_btn_wrap">
         <a
           :href="`/movies/detail-view/${movieProfile.id}`"
           class="btn_movieChart_detail"
-          >상세보기
+        >상세보기
         </a>
         <a
           href="/ticket/?MOVIE_CD=20029409&amp;MOVIE_CD_GROUP=20029409"
           class="btn_movieChart_ticketing"
-          >예매하기</a
+        >예매하기</a
         >
       </div>
     </div>
@@ -34,12 +37,26 @@
 </template>
 
 <script>
+import moment from "moment";
+
 export default {
   name: "movie-profile-card",
   props: {
     movieProfile: Object,
   },
-  setup() {},
+  setup() {
+    const isReleased = (releaseDate) => {
+      return moment(releaseDate, "YYYY.MM.DD").isAfter(moment());
+    }
+    const calcD_day = (releaseDate) => {
+      return moment().diff(releaseDate, "days")-1;
+    };
+
+    return {
+      calcD_day,
+      isReleased,
+    };
+  },
 };
 </script>
 

@@ -1,8 +1,8 @@
 <template>
   <Carousel :settings="settings">
-    <Slide v-for="movie in movieChart" :key="movie.id">
+    <Slide v-for="movie in movieChart" :key="movie">
       <div class="carousel__item">
-        <movie-profile-card :movie-profile="movie" > </movie-profile-card>
+        <movie-profile-card :movie-profile="movie"> </movie-profile-card>
       </div>
     </Slide>
 
@@ -19,8 +19,8 @@ import MovieProfileCard from "@/components/slot/card/MovieProfileCard";
 
 export default {
   name: "movie-chart-slide",
-  props:{
-    movieChart:Array
+  props: {
+    movieChart: Array,
   },
   components: {
     Carousel,
@@ -33,12 +33,10 @@ export default {
     settings: {
       itemsToShow: 5,
       snapAlign: "center",
-      itemsToScroll:5
+      itemsToScroll: 5,
     },
   }),
-  setup() {
-
-  },
+  setup() {},
 };
 </script>
 

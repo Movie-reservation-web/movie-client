@@ -8,8 +8,11 @@ export default {
   },
   // Server API 호출
   actions: {
-    getMovieChart({ commit }) {
-      return MovieService.getMovieChart().then(
+    getMovieChart({ commit }, payload) {
+      let movieChart = payload
+        ? MovieService.getMovieChart(!payload)
+        : MovieService.getUnreleasedMovieChart();
+      return movieChart.then(
         (data) => {
           commit("GET_MOVIE_CHART", data);
           return Promise.resolve(data);

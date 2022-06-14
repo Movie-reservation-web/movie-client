@@ -22,16 +22,6 @@
 export default {
   name: "",
   components: {},
-  data() {
-    return {
-      simpleData: "",
-    };
-  },
-  setup() {},
-  created() {},
-  mounted() {},
-  unmounted() {},
-  methods: {},
 };
 </script>
 
