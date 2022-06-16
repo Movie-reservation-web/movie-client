@@ -1,13 +1,15 @@
-import axios from "axios";
-
-const API_URL = "http://localhost:8080";
+import axios from "@/axios";
 
 class CategoryService {
   getGenderType() {
+    return axios.get("/api/v1/categories/gender-type").then((response) => {
+      return response.data.data;
+    });
+  }
+  getSortType(name) {
     return axios
-      .get(API_URL + "/api/v1/categories/gender-type")
+      .get(`/api/v1/categories/sort-type/${name}`)
       .then((response) => {
-        // localStorage.setItem('genderTypes', JSON.stringify(response.data.data))
         return response.data.data;
       });
   }

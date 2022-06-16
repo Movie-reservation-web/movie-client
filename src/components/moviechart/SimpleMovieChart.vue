@@ -39,9 +39,11 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import {computed, onMounted, ref} from "vue";
 import MovieChartSlide from "@/components/moviechart/MovieChartSlide";
-import { useMovie } from "@/composables/movie";
+import {useStore} from "vuex";
+
+import {useMovie} from "@/composables/movie";
 
 export default {
   name: "simple-movie-chart",
@@ -50,11 +52,17 @@ export default {
   },
   setup() {
     const isActive = ref(true);
-    const { movieChart, getMovieChart } = useMovie();
+    const store = new useStore();
 
-    if (!movieChart || !movieChart.length) {
-      getMovieChart(isActive.value);
-    }
+    const {getMovieChart} = useMovie();
+    onMounted(async () => {
+      if (store.state.movie.movieChart == null) {
+        await getMovieChart(isActive.value);
+      }
+    });
+    const movieChart = computed(() => {
+      return store.state.movie.movieChart;
+    });
 
     const switchMovieChart = () => {
       isActive.value = !isActive.value;

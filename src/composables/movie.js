@@ -1,13 +1,11 @@
-import {computed, ref} from "vue";
-import {useStore} from "vuex";
+import {ref} from "vue";
+import { useStore } from "vuex";
 
 export const useMovie = () => {
   const store = useStore();
   const error = ref(null);
   const isPending = ref(false);
-
-  const movieChart = computed(() => store.getters["movie/movieChart"]);
-  const movieDetail = computed(() => store.getters["movie/movieDetail"]);
+  const movieDetail = ref(store.getters["movie/movieDetail"]);
 
   const getMovieChart = async (isReleased) => {
     error.value = null;
@@ -25,7 +23,7 @@ export const useMovie = () => {
     error.value = null;
     isPending.value = true;
     try {
-      await store.dispatch("movie/getMovieDetail", {id});
+      await store.dispatch("movie/getMovieDetail", id);
       error.value = null;
       isPending.value = false;
     } catch (err) {
@@ -37,7 +35,6 @@ export const useMovie = () => {
   return {
     error,
     isPending,
-    movieChart,
     movieDetail,
     getMovieChart,
     getMovieDetail,

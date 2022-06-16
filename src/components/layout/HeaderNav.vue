@@ -1,44 +1,66 @@
 <template>
   <div class="contents">
     <h1>
-      <a href="/" tabindex="-1"><img :src="logoUrl" alt="CGV"/></a>
+      <a href="/" tabindex="-1"><img :src="logoUrl" alt="CGV" /></a>
     </h1>
     <ul class="nav_menu">
       <li>
-        <h2><a href="/movies/?lt=1&amp;ft=0">영화</a></h2>
+        <h2>
+          <a href="/">{{ $t("menu.movie") }}</a>
+        </h2>
         <dl class="nav_overMenu" style="display: none">
           <dt>
-            <h2><a href="/movies/?lt=1&amp;ft=0" tabindex="-1">영화</a></h2>
+            <h2>
+              <a href="/movies/?lt=1&amp;ft=0" tabindex="-1">{{
+                $t("menu.movie")
+              }}</a>
+            </h2>
           </dt>
           <dd>
-            <h3><a href="/movies/?lt=1&amp;ft=0">무비차트</a></h3>
-          </dd>
-        </dl>
-      </li>
-      <li>
-        <h2><a href="/theaters/">극장</a></h2>
-        <dl class="nav_overMenu" style="display: none">
-          <dt>
-            <h2><a href="/theaters/" tabindex="-1">극장</a></h2>
-          </dt>
-          <dd>
-            <h3><a href="/theaters/">I.CINEMA 극장</a></h3>
+            <h3>
+              <a href="/movies/?lt=1&amp;ft=0">{{ $t("menu.movie-chart") }}</a>
+            </h3>
           </dd>
         </dl>
       </li>
       <li>
         <h2>
-          <a href="/ticket/"><strong>예매</strong></a>
+          <a href="/theaters/">{{ $t("menu.theater") }}</a>
         </h2>
         <dl class="nav_overMenu" style="display: none">
           <dt>
-            <h2><a href="/ticket/" tabindex="-1">예매</a></h2>
+            <h2>
+              <a href="/theaters/" tabindex="-1">{{ $t("menu.theater") }}</a>
+            </h2>
           </dt>
           <dd>
-            <h3><a href="/ticket/">빠른예매</a></h3>
+            <h3>
+              <a href="/theaters/">{{ $t("menu.theater-icinema") }}</a>
+            </h3>
+          </dd>
+        </dl>
+      </li>
+      <li>
+        <h2>
+          <a href="/ticket/"
+            ><strong>{{ $t("menu.ticket") }}</strong></a
+          >
+        </h2>
+        <dl class="nav_overMenu" style="display: none">
+          <dt>
+            <h2>
+              <a href="/ticket/" tabindex="-1">{{ $t("menu.ticket") }}</a>
+            </h2>
+          </dt>
+          <dd>
+            <h3>
+              <a href="/ticket/">{{ $t("menu.ticket-quick") }}</a>
+            </h3>
           </dd>
           <dd>
-            <h3><a href="/reserve/show-times/">상영스케줄</a></h3>
+            <h3>
+              <a href="/reserve/show-times/">{{ $t("menu.schedule") }}</a>
+            </h3>
           </dd>
         </dl>
       </li>
@@ -58,42 +80,42 @@ export default {
       return store.state.logo;
     });
     return {
-      logoUrl
+      logoUrl,
     };
   },
   mounted() {
-    $(document).ready(function() {
+    $(document).ready(function () {
       $(".nav_menu > li > h2 > a").on({
-        mouseenter: function(e) {
+        mouseenter: function (e) {
           var target = e.target;
           $(target)
             .parents(".nav_menu")
             .find(".nav_overMenu")
-            .slideDown(function() {
+            .slideDown(function () {
               $(".nav").addClass("active");
             });
         },
-        click: function() {
+        click: function () {
           if (!$(".nav").hasClass("active")) {
             $(this).trigger("mouseenter");
           } else {
             $(".nav").trigger("mouseleave");
           }
-        }
+        },
       });
 
       $(".nav").on({
-        mouseleave: function() {
+        mouseleave: function () {
           $(this)
             .find(".nav_overMenu")
-            .slideUp(200, function() {
+            .slideUp(200, function () {
               $(".nav").removeClass("active");
             });
-        }
+        },
       });
 
       $(this).on({
-        scroll: function() {
+        scroll: function () {
           /* S GNB fixed */
           var headerOffsetT = $(".header").offset().top;
           var headerOuterH = $(".header").outerHeight(true);
@@ -120,10 +142,10 @@ export default {
           }
           /* E > GNB fixed 좌우 스크롤 */
           /* S GNB fixed */
-        }
+        },
       });
     });
-  }
+  },
 };
 </script>
 

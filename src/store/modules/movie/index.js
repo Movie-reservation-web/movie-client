@@ -1,10 +1,15 @@
 import MovieService from "@/services/movie.service";
 
+const movieChart = JSON.parse(localStorage.getItem("movieChart"));
+const movieDetail = JSON.parse(localStorage.getItem("movieDetail"));
+const initMovieChart = movieChart ? { movieChart } : { movieChart: null };
+const initMovieDetail = movieDetail ? { movieDetail } : { movieDetail: null };
+
 export default {
   namespaced: true,
   state: {
-    movieChart: [],
-    movieDetail: {},
+    initMovieChart,
+    initMovieDetail,
   },
   // Server API 호출
   actions: {

@@ -5,7 +5,7 @@ import store from "@/store";
 
 const routes = [
   {
-    path: "/",
+    path: "",
     name: "Home",
     component: Home,
   },

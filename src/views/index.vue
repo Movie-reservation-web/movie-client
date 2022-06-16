@@ -11,7 +11,7 @@ import PaymentService from "@/services/payment.service";
 import VideoSlot from "@/components/slot/VideoSlot";
 import SimpleMovieChart from "@/components/moviechart/SimpleMovieChart";
 export default {
-  name: "home",
+  name: "Home",
   components: { VideoSlot, SimpleMovieChart },
   setup() {
     // const { error, payment, isPending } = usePayment();

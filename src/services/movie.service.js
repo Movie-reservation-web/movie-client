@@ -13,6 +13,7 @@ class MovieService {
   async getUnreleasedMovieChart() {
     try {
       const res = await axios.get("movies/chart/unreleased");
+      localStorage.setItem("movieChart", JSON.stringify(res.data.data));
       console.log(res.data.data);
       return res.data.data;
     } catch (err) {
@@ -22,6 +23,7 @@ class MovieService {
   async getMovieDetail(id) {
     try {
       const res = await axios.get(`movies/${id}`);
+      localStorage.setItem("movieDetail", JSON.stringify(res.data.data));
       console.log(res.data.data);
       return res.data.data;
     } catch (err) {
