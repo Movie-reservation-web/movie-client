@@ -36,10 +36,12 @@
         </div>
       </div>
     </div>
-    <Pagination
+    <pagination
       v-if="reviews.length"
       :number-of-pages="numberOfPages"
       :current-page="currentPage"
+      :contentLimit="contentLimit"
+      :pageLimit="pageLimit"
       @click="getReviews"
     />
   </div>
@@ -50,41 +52,54 @@ import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import CategoryService from "@/services/category.service";
 import ReviewService from "@/services/review.service";
+import Pagination from "../slot/Pagination";
 
 export default {
   name: "movie-detail-etc",
+  components: {
+    Pagination,
+  },
   setup() {
     const store = useStore();
     const movieDetail = computed(() => store.getters["movie/movieDetail"]);
     const reviews = ref([]);
     const numberOfReviews = ref(0);
-    const limit = 10;
-    const currentPage = ref(1);
-    const numberOfPages = computed(() => {
-      return Math.ceil(numberOfReviews.value / limit);
-    });
-    const getReviews = async () => {
-      currentPage.value = page;
-      try {
-        const res = await axios.get(`todos?_sort=id&_order=desc&subject_like=${searchText.value}&_page=${page}&_limit=${limit}`)
-        numberOfTodos.value = res.headers['x-total-count'];
-        todos.value = res.data;
-      } catch (err) {
-        console.log(err);
-        triggerToast('Something went wrong..', 'danger');
-      }
-    }
-
+    const contentLimit = 6;
+    const pageLimit = 5;
+    const currentPage = ref(0);
     const isClick = ref(true);
     const sortTypes = CategoryService.getSortType("review");
+
+    const numberOfPages = ref(0);
+    const getReviews = async (title, page, sortType) => {
+      currentPage.value = page;
+      try {
+        const res = ReviewService.getReview(
+          title,
+          page,
+          contentLimit.value,
+          sortType
+        );
+        numberOfReviews.value = res.totalElements;
+        reviews.value = res.content;
+        numberOfPages.value = res.totalPages;
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getReviews(movieDetail.value.title, currentPage, sortTypes[0]);
     const switchOrder = async (sortType) => {
       isClick.value = !isClick.value;
       reviews.value = await ReviewService.getReview(
         movieDetail.value.title,
+        currentPage,
+
         sortType
       );
     };
     return {
+      pageLimit,
+      contentLimit,
       currentPage,
       numberOfPages,
       numberOfReviews,
