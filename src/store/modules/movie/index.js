@@ -9,15 +9,24 @@ export default {
   namespaced: true,
   state: {
     initMovieChart,
-    initMovieDetail,
+    initMovieDetail
   },
   // Server API 호출
   actions: {
     getMovieChart({ commit }, payload) {
-      let movieChart = payload
-        ? MovieService.getMovieChart(!payload)
-        : MovieService.getUnreleasedMovieChart();
-      return movieChart.then(
+      return MovieService.getMovieChart(payload.sort, !payload.isReleased).then(
+        (data) => {
+          commit("GET_MOVIE_CHART", data);
+          return Promise.resolve(data);
+        },
+        (error) => {
+          commit("GET_MOVIE_CHART_FAIL");
+          return Promise.resolve(error);
+        }
+      );
+    },
+    getUnreleasedMovieChart({ commit }) {
+      return MovieService.getUnreleasedMovieChart().then(
         (data) => {
           commit("GET_MOVIE_CHART", data);
           return Promise.resolve(data);
@@ -47,13 +56,13 @@ export default {
       state.movieChart = data;
     },
     GET_MOVIE_DETAIL(state, data) {
-      state.movieDetail = data;
+      state.initMovieDetail.movieDetail = data;
     },
     GET_MOVIE_CHART_FAIL(state) {
       state.movieChart = null;
     },
     GET_MOVIE_DETAIL_FAIL(state) {
-      state.movieDetail = null;
+      state.initMovieDetail.movieDetail = null;
     },
   },
   getters: {

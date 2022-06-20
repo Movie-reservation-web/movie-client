@@ -2,7 +2,8 @@
   <Carousel :settings="settings">
     <Slide v-for="movie in movieChart" :key="movie">
       <div class="carousel__item">
-        <movie-profile-card :movie-profile="movie"> </movie-profile-card>
+        <simple-movie-chart-card :movie-profile="movie">
+        </simple-movie-chart-card>
       </div>
     </Slide>
 
@@ -15,7 +16,7 @@
 <script>
 import { Carousel, Slide, Navigation } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
-import MovieProfileCard from "@/components/slot/card/MovieProfileCard";
+import SimpleMovieChartCard from "@/components/moviechart/SimpleMovieChartCard";
 
 export default {
   name: "movie-chart-slide",
@@ -26,7 +27,7 @@ export default {
     Carousel,
     Slide,
     Navigation,
-    MovieProfileCard,
+    SimpleMovieChartCard,
   },
   data: () => ({
     // carousel settings

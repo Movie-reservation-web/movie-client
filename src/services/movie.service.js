@@ -1,10 +1,10 @@
 import axios from "@/axios";
 
 class MovieService {
-  getMovieChart = async (isReleased) => {
+  getMovieChart = async (sort, isReleased) => {
     try {
       const res = await axios.get(
-        `movies/chart?sortType=AUDIENCE_DESC&isReleased=${isReleased}`
+        `movies/chart?sort=${sort}&isReleased=${isReleased}`
       );
       return res.data.data;
     } catch (err) {

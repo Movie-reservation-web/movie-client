@@ -2,7 +2,8 @@ import CategoryService from "@/services/category.service";
 
 export default {
   namespaced: true,
-  state: {},
+  state: {
+  },
   actions: {
     getGenderType({ commit }) {
       return CategoryService.getGenderType().then((data) => {

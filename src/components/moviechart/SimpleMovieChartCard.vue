@@ -47,7 +47,7 @@
 import moment from "moment";
 
 export default {
-  name: "movie-profile-card",
+  name: "simple-movie-chart-card",
   props: {
     movieProfile: Object,
   },

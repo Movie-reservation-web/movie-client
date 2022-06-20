@@ -23,10 +23,10 @@
           </h3>
         </div>
         <a
-          href="/movies/?lt=1&amp;ft=0"
+          href="/movie-chart"
           id="btn_allView_Movie"
           class="btn_allView"
-          style="text-decoration:none;color: inherit"
+          style="text-decoration: none; color: inherit"
         >
           전체보기
         </a>
@@ -40,11 +40,12 @@
 </template>
 
 <script>
-import {computed, onMounted, ref} from "vue";
+import { computed, onMounted, ref } from "vue";
 import MovieChartSlide from "@/components/moviechart/MovieChartSlide";
-import {useStore} from "vuex";
+import { useStore } from "vuex";
+import CategoryService from "@/services/category.service";
 
-import {useMovie} from "@/composables/movie";
+import { useMovie } from "@/composables/movie";
 
 export default {
   name: "simple-movie-chart",
@@ -54,11 +55,13 @@ export default {
   setup() {
     const isActive = ref(true);
     const store = new useStore();
-
-    const {getMovieChart} = useMovie();
+    const sortType = ref(null);
+    const { getUnreleasedMovieChart, getMovieChart } = useMovie();
     onMounted(async () => {
+      const sortTypes = await CategoryService.getSortType("moviechart");
+      sortType.value = sortTypes[0];
       if (store.state.movie.movieChart == null) {
-        await getMovieChart(isActive.value);
+        await getMovieChart(sortType.value.code, isActive.value);
       }
     });
     const movieChart = computed(() => {
@@ -67,7 +70,9 @@ export default {
 
     const switchMovieChart = () => {
       isActive.value = !isActive.value;
-      getMovieChart(isActive.value);
+      isActive.value
+        ? getMovieChart(sortType.value.code, isActive.value)
+        : getUnreleasedMovieChart();
     };
 
     return {

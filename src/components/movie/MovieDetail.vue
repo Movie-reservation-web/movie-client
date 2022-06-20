@@ -18,7 +18,7 @@
 
         <em class="round brown"><span>예매중</span></em>
         <em class="round red" v-if="isReleased(movieDetail.releaseDate)"
-          ><span>{{ calcD_day(movieDetail.releaseDate) }}</span></em
+          ><span>D{{ calcD_day(movieDetail.releaseDate) }}</span></em
         >
       </div>
       <div class="score">
