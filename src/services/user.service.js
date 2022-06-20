@@ -1,49 +1,60 @@
 import axios from "@/axios";
-
+import {useCookies} from "vue3-cookies";
 const configHeaders = {
   "content-type": "application/json; charset=utf-8",
 };
 const jwt = require("jsonwebtoken");
-
+const {cookies} = useCookies();
 class AuthService {
+
+
   /**
    * 로그인
    */
-  login(username, password) {
+  login(email, password) {
     let request = {
-      loginId: username,
+      email: email,
       password: password,
     };
+    console.log(request);
     return axios
       .post("/auth/login", JSON.stringify(request), {
         headers: configHeaders,
       })
-      .then((response) => {
-        localStorage.setItem("tokenData", JSON.stringify(response.data.data));
-        let user = jwt.decode(response.data.data.accessToken);
-        localStorage.setItem("user", JSON.stringify(user.member));
-        return user.member;
+      .then((res) => {
+        let token = res.data.data.accessToken;
+        localStorage.setItem("token", token);
+        let email = jwt.decode(token).sub;
+        localStorage.setItem("user", email);
+        return email;
       });
   }
-
+  reissue() {
+    return axios.post("/auth/reissue").then((res) => {
+      let token = res.data.data.accessToken;
+      localStorage.setItem("token", token);
+    });
+  }
   /**
    * 로그아웃
    */
   logout() {
-    // // LocalStorage 사용자 정보
-    let tokenData = JSON.parse(localStorage.getItem("tokenData"));
-    let data = {
-      accessToken: tokenData.accessToken,
-      refreshToken: tokenData.refreshToken,
-    };
-
+    let token = localStorage.getItem("token");
+    console.log(token);
     return axios
-      .post("/auth/logout", JSON.stringify(data), {
-        headers: configHeaders,
-      })
+      .post(
+        "/auth/logout",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((response) => {
         console.log(response.data.message);
-        localStorage.removeItem("tokenData");
+        cookies.remove("Refresh-Token");
+        localStorage.removeItem("token");
         localStorage.removeItem("user");
       });
   }

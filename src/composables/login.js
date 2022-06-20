@@ -13,14 +13,14 @@ export const useLogin = () => {
   const error = ref("");
   const isPending = ref(false);
 
-  const login = async (username, password) => {
+  const login = async (email, password) => {
     error.value = "";
     isPending.value = true;
 
     // auth.module.js에 있는 login action 실행.
     await store
       .dispatch("auth/login", {
-        username,
+        email,
         password,
       })
       .then(() => {

@@ -1,4 +1,4 @@
-import AuthService from '@/services/user.service'
+import AuthService from "@/services/user.service";
 
 /**
  * 1. Server API 호출
@@ -6,61 +6,59 @@ import AuthService from '@/services/user.service'
  * 3. mutations에서 사용자 정보(토큰)와 로그인 상태를 저장
  * @type {any}
  */
-const user = JSON.parse(localStorage.getItem('user'))
+const user = JSON.parse(localStorage.getItem("user"));
 const initialState = user
   ? {
-    status: { loggedIn: true },
-    user
-  }
+      status: { loggedIn: true },
+      user,
+    }
   : {
-    status: { loggedIn: false },
-    user: null
-  }
+      status: { loggedIn: false },
+      user: null,
+    };
 
 export default {
   namespaced: true,
   state: initialState,
   // Server API 호출
   actions: {
-    login ({ commit }, {
-      username,
-      password
-    }) {
-      return AuthService.login(username, password).then(
-        user => {
-          commit('LOGIN_SUCCESS', user)
-          return Promise.resolve(user)
+    login({ commit }, { email, password }) {
+      return AuthService.login(email, password).then(
+        (user) => {
+          commit("LOGIN_SUCCESS", user);
+          return Promise.resolve(user);
         },
-        error => {
-          commit('LOGIN_FAIL')
-          throw error.response
-        })
+        (error) => {
+          commit("LOGIN_FAIL");
+          throw error.response;
+        }
+      );
     },
-    logout ({ commit }) {
-      AuthService.logout().then(() => commit('LOGOUT'))
-    }
+    logout({ commit }) {
+      AuthService.logout().then(() => commit("LOGOUT"));
+    },
   },
   // API 호출 값을 파라미터로 전달받은 후 state에 값을 저장
   mutations: {
-    LOGIN_SUCCESS (state, payload) {
-      state.status.loggedIn = true
-      state.user = payload
+    LOGIN_SUCCESS(state, payload) {
+      state.status.loggedIn = true;
+      state.user = payload;
     },
-    LOGIN_FAIL (state) {
-      state.status.loggedIn = false
-      state.user = null
+    LOGIN_FAIL(state) {
+      state.status.loggedIn = false;
+      state.user = null;
     },
-    LOGOUT (state) {
-      state.status.loggedIn = false
-      state.user = null
-    }
+    LOGOUT(state) {
+      state.status.loggedIn = false;
+      state.user = null;
+    },
   },
   getters: {
-    isLoggedIn (state) {
-      return state.status.loggedIn
+    isLoggedIn(state) {
+      return state.status.loggedIn;
     },
-    loggedInUser (state) {
-      return state.user
-    }
-  }
-}
+    loggedInUser(state) {
+      return state.user;
+    },
+  },
+};

@@ -26,7 +26,14 @@ class PaymentService {
   }
 
   callback(response) {
-    const { success, imp_uid, error_msg, merchant_uid, paid_amount,buyer_email } = response;
+    const {
+      success,
+      imp_uid,
+      error_msg,
+      merchant_uid,
+      paid_amount,
+      buyer_email,
+    } = response;
     if (success) {
       let request = {
         merchant_uid: merchant_uid,
@@ -64,7 +71,7 @@ class PaymentService {
       member_email: memberEmail,
       reserved_number: ticketNumber,
     };
-    console.log(request)
+    console.log(request);
     return axios
       .post("/tickets/cancel", JSON.stringify(request), {
         headers: configHeaders,

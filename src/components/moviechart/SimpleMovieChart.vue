@@ -26,6 +26,7 @@
           href="/movies/?lt=1&amp;ft=0"
           id="btn_allView_Movie"
           class="btn_allView"
+          style="text-decoration:none;color: inherit"
         >
           전체보기
         </a>

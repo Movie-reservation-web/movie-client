@@ -1,8 +1,8 @@
 <template>
   <div id="container">
     <div
-      id="contents"
-      class="set-bg"
+      id="login-contents"
+      class="login set-bg"
       v-bind:style="{ backgroundImage: 'url(' + backgroundUrl + ')' }"
     >
       <div class="login-wrap">
@@ -110,10 +110,6 @@ export default {
 </script>
 
 <style scoped>
-#contents {
-  clear: both;
-  padding-bottom: 50px;
-}
 .login-wrap {
   position: relative;
   padding: 30px 30px 0;
@@ -156,6 +152,6 @@ export default {
 
 a,
 a:hover {
-  color: #943939;
+  color: #943939!important;
 }
 </style>

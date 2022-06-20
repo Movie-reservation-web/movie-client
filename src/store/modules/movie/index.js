@@ -58,10 +58,10 @@ export default {
   },
   getters: {
     movieChart(state) {
-      return state.movieChart;
+      return state.initMovieChart.movieChart;
     },
     movieDetail(state) {
-      return state.movieDetail;
+      return state.initMovieDetail.movieDetail;
     },
   },
 };

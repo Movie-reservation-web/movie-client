@@ -5,7 +5,6 @@ export const useMovie = () => {
   const store = useStore();
   const error = ref(null);
   const isPending = ref(false);
-  const movieDetail = ref(store.getters["movie/movieDetail"]);
 
   const getMovieChart = async (isReleased) => {
     error.value = null;
@@ -35,7 +34,6 @@ export const useMovie = () => {
   return {
     error,
     isPending,
-    movieDetail,
     getMovieChart,
     getMovieDetail,
   };

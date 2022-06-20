@@ -2,29 +2,37 @@
   <div class="cols-content" id="menu">
     <div class="col-detail">
       <div class="sect-story-movie">
-        {{ info }}
+        {{ movieDetail.info }}
       </div>
       <div class="sect-grade">
-        <ul class="sort" id="sortTab">
-          <li
-            v-for="sortType in sortTypes"
-            :key="sortType"
-            :class="isClick ? 'on' : ''"
-            @click="switchOrder(sortType.code)"
-          >
-            {{ sortType.value }}
-            <span class="arrow-down"></span>
-          </li>
-        </ul>
+        <review-sort
+          v-if="sortTypes"
+          @click="switchOrder"
+          :sort-types="sortTypes"
+          :sort-type="sortType"
+        />
         <div class="wrap-persongrade">
           <!-- 평점 목록 -->
           <ul id="movie_point_list_container" class="point_col2">
             <li v-for="review in reviews" :key="review.id">
+              <div class="box-image">
+                <span class="thumb-image">
+                  <img
+                    src="http://img.cgv.co.kr/R2014/images/common/default_profile.gif"
+                    alt="사용자 프로필"
+                  />
+                  <span class="profile-mask"> </span>
+                  <div class="theater-sticker"></div>
+                </span>
+              </div>
               <div class="box-contents">
                 <ul class="writerinfo">
-                  <li class="writer-name">{{ review.writer }}</li>
+                  <li class="writer-name"><a>{{ review.writer }}</a></li>
                   <li class="writer-etc">
                     <span class="day">{{ review.writeDate }}</span>
+                    <span class="like point_like"
+                      >평점 : {{ review.score }}점</span
+                    >
                   </li>
                 </ul>
               </div>
@@ -35,50 +43,72 @@
           </ul>
         </div>
       </div>
+      <pagination
+        :number-of-pages="numberOfPages"
+        :current-page="currentPage"
+        :content-limit="contentLimit"
+        :page-limit="pageLimit"
+        :page-group="pageGroup"
+        @click="getReviews"
+      />
     </div>
-    <pagination
-      v-if="reviews.length"
-      :number-of-pages="numberOfPages"
-      :current-page="currentPage"
-      :contentLimit="contentLimit"
-      :pageLimit="pageLimit"
-      @click="getReviews"
-    />
   </div>
 </template>
 
 <script>
 import { computed, ref } from "vue";
-import { useStore } from "vuex";
 import CategoryService from "@/services/category.service";
 import ReviewService from "@/services/review.service";
 import Pagination from "../slot/Pagination";
+import ReviewSort from "@/components/movie/ReviewSort";
 
 export default {
   name: "movie-detail-etc",
   components: {
     Pagination,
+    ReviewSort,
   },
-  setup() {
-    const store = useStore();
-    const movieDetail = computed(() => store.getters["movie/movieDetail"]);
+  props: {
+    movieDetail: Object,
+  },
+  setup(props) {
     const reviews = ref([]);
+    // pagination
     const numberOfReviews = ref(0);
-    const contentLimit = 6;
+    const contentLimit = 4;
     const pageLimit = 5;
-    const currentPage = ref(0);
-    const isClick = ref(true);
-    const sortTypes = CategoryService.getSortType("review");
-
+    const pageGroup = computed(() => {
+      return Math.ceil(currentPage.value / pageLimit) - 1;
+    });
+    const currentPage = ref(1);
     const numberOfPages = ref(0);
-    const getReviews = async (title, page, sortType) => {
+    const sortTypes = ref([]);
+    const sortType = ref("id,desc");
+    // sort
+    const getSortTypes = async () => {
+      try {
+        const res = await CategoryService.getSortType("review");
+        sortTypes.value = res;
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    const switchOrder = async (sort) => {
+      sortType.value = sort;
+      await getReviews(1, sort);
+    };
+    getSortTypes();
+
+    // review
+    const getReviews = async (page = currentPage.value, sort=sortType.value) => {
       currentPage.value = page;
       try {
-        const res = ReviewService.getReview(
-          title,
+        const res = await ReviewService.getReview(
+          props.movieDetail.title,
           page,
-          contentLimit.value,
-          sortType
+          contentLimit,
+          sort
         );
         numberOfReviews.value = res.totalElements;
         reviews.value = res.content;
@@ -87,26 +117,19 @@ export default {
         console.log(err);
       }
     };
-    getReviews(movieDetail.value.title, currentPage, sortTypes[0]);
-    const switchOrder = async (sortType) => {
-      isClick.value = !isClick.value;
-      reviews.value = await ReviewService.getReview(
-        movieDetail.value.title,
-        currentPage,
+    getReviews(currentPage.value, "id,desc");
 
-        sortType
-      );
-    };
     return {
       pageLimit,
+      pageGroup,
       contentLimit,
       currentPage,
       numberOfPages,
       numberOfReviews,
-      isClick,
+      sortType,
+      getReviews,
       switchOrder,
       sortTypes,
-      info: movieDetail.value.info,
       reviews,
     };
   },

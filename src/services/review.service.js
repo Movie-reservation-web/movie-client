@@ -9,19 +9,14 @@ class ReviewService {
     try {
       let request = {
         movieTitle: movieTitle,
-        writer: null,
+        writer: "",
       };
-      return axios
-        .get(
-          `reviews/search?page=${page - 1}&size=${size}&sort=${sortType}`,
-          JSON.stringify(request),
-          {
-            headers: configHeaders,
-          }
-        )
-        .then((response) => {
-          return response.data.data;
-        });
+      const res = await axios.post(
+        `reviews/search?page=${page - 1}&size=${size}&sort=${sortType}`,
+        JSON.stringify(request),
+        { headers: configHeaders }
+      );
+      return res.data.data;
     } catch (err) {
       console.log(err);
     }

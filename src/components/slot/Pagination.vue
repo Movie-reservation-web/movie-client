@@ -1,30 +1,16 @@
 <template>
   <div class="paging">
-    <ul id="paging_point">
-      <li :class="currentPage ? 'on' : ''" @click="currentPage">
-        <a href="#1" title="1페이지 선택">1</a>
-      </li>
-      <li class="paging-side">
-        <button class="btn-paging next" type="button">다음 10개</button>
-      </li>
-      <li class="paging-side">
-        <button class="btn-paging end" type="button">끝</button>
-      </li>
-    </ul>
-  </div>
-
-  <div class="paging">
     <ul class="paging_point">
-      <template v-if="!isFirstPage(currentPage)">
+      <template v-if="currentPage > pageLimit">
         <li class="paging-side">
-          <button class="btn-paging first" type="button">처음</button>
+          <button class="btn-paging first" @click="onClick(1)" type="button">
+            처음
+          </button>
         </li>
         <li class="paging-side">
           <button
             class="btn-paging prev"
-            @click="
-              onClick((Math.round(currentPage / pageLimit) + 1) * pageLimit)
-            "
+            @click="onClick((pageGroup - 1) * pageLimit + 1)"
             type="button"
           >
             이전 5개
@@ -32,17 +18,25 @@
         </li>
       </template>
       <li
-        v-for="page in pageLimit"
+        v-for="page in pageGroup !== numberOfPageGroup-1
+          ? pageLimit
+          : numberOfPages & pageLimit"
         :key="page"
         :class="currentPage % pageLimit === page ? 'on' : ''"
       >
-        <a @click="onClick(page)" :title="page+'페이지 선택'"> {{ page + 1 }}</a>
+        <a
+          @click="onClick(page + pageGroup * pageLimit)"
+          :title="page + pageGroup * pageLimit + '페이지 선택'"
+          style="cursor: pointer"
+        >
+          {{ page + pageGroup * pageLimit }}</a
+        >
       </li>
-      <template v-if="!isLastPage(currentPage, numberOfPages)">
+      <template v-if="pageGroup !== numberOfPageGroup - 1">
         <li class="paging-side">
           <button
             class="btn-paging next"
-            @click="onClick(currentPage + 5)"
+            @click="onClick((pageGroup + 1) * pageLimit + 1)"
             type="button"
           >
             다음 5개
@@ -50,8 +44,8 @@
         </li>
         <li class="paging-side">
           <button
-            v-if="currentPage > pageLimit"
-            class="btn-paging first"
+            class="btn-paging end"
+            @click="onClick((numberOfPageGroup - 1) * pageLimit + 1)"
             type="button"
           >
             끝
@@ -83,6 +77,10 @@ export default {
       type: Number,
       required: true,
     },
+    pageGroup: {
+      type: Number,
+      required: true,
+    },
   },
   emits: ["click"],
   setup(props) {
@@ -90,16 +88,11 @@ export default {
     const onClick = (page) => {
       emit("click", page);
     };
-    const isLastPage = (cp, np) => {
-      return parseInt(cp / props.pageLimit) === parseInt(np / props.pageLimit);
-    };
-    const isFirstPage = (cp) => {
-      return cp < props.pageLimit;
-    };
+    const numberOfPageGroup = computed(() => {
+      return Math.ceil(props.numberOfPages / props.pageLimit);
+    });
     return {
-      currentPage,
-      isFirstPage,
-      isLastPage,
+      numberOfPageGroup,
       onClick,
     };
   },

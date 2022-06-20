@@ -30,20 +30,24 @@
         <dl>
           <dt>감독 :&nbsp;</dt>
           <dd>
-            <span>{{movieDetail.director}}</span>
+            <span>{{ movieDetail.director }}</span>
           </dd>
           <dt>&nbsp;/ 배우 :&nbsp;</dt>
           <dd class="on">
             <span v-for="(actor, index) in movieDetail.actors" :key="actor">
               {{ actor }}
-              <span v-if="index !== movieDetail.actors.length-1">,&nbsp;</span>
+              <span v-if="index !== movieDetail.actors.length - 1"
+                >,&nbsp;</span
+              >
             </span>
           </dd>
           <dt>장르 :&nbsp;</dt>
           <dd>
             <span v-for="(genre, index) in movieDetail.genres" :key="genre">
               {{ genre.value }}
-              <span v-if="index !== movieDetail.genres.length - 1">,&nbsp;</span>
+              <span v-if="index !== movieDetail.genres.length - 1"
+                >,&nbsp;</span
+              >
             </span>
           </dd>
           <dt>&nbsp;/ 기본 :&nbsp;</dt>
@@ -80,14 +84,13 @@
 
 <script>
 import moment from "moment";
-import { useStore } from "vuex";
-import { computed } from "vue";
 
 export default {
   name: "movie-detail",
+  props: {
+    movieDetail: Object,
+  },
   setup() {
-    const store = useStore();
-    const movieDetail = computed(() => store.getters["movie/movieDetail"]);
     const isReleased = (releaseDate) => {
       return moment(releaseDate, "YYYY.MM.DD").isAfter(moment());
     };
@@ -97,7 +100,6 @@ export default {
     return {
       isReleased,
       calcD_day,
-      movieDetail,
     };
   },
 };

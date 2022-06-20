@@ -45,7 +45,6 @@
 
 <script>
 import moment from "moment";
-import { useMovie } from "@/composables/movie";
 
 export default {
   name: "movie-profile-card",
@@ -53,7 +52,6 @@ export default {
     movieProfile: Object,
   },
   setup() {
-    const { getMovieDetail } = useMovie();
     const isReleased = (releaseDate) => {
       return moment(releaseDate, "YYYY.MM.DD").isAfter(moment());
     };
@@ -61,12 +59,7 @@ export default {
       return moment().diff(releaseDate, "days") - 1;
     };
 
-    const setMovieDetail = (id) => {
-      console.log("여기는 카드");
-      getMovieDetail(id);
-    };
     return {
-      setMovieDetail,
       calcD_day,
       isReleased,
     };

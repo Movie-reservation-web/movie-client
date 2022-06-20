@@ -24,11 +24,16 @@
           >모든 것의 시작,<br />또 다른 존재가 깨어난다!</span
         >
         <div class="movieSelection_video_controller_wrap">
-          <a
-            href="http://ad.cgv.co.kr/click/CGV/CGV_201401/main@MovieSelection2021?ads_id%3d47082%26creative_id%3d66729%26click_id%3d87079%26maid%3D%26event%3d"
-            id="ctl00_PlaceHolderContent_AD_CLIP_DETAIL_URL"
+          <router-link
+            tag="a"
+            :to="{
+              name: 'Movie',
+              params: {
+                id: '4',
+              },
+            }"
             class="btn_movieSelection_detailView"
-            >상세보기</a
+            >상세보기</router-link
           >
           <a
             href="#none"
