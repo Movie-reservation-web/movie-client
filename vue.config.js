@@ -10,16 +10,6 @@ module.exports = {
       },
     },
   },
-  css: {
-    loaderOptions: {
-      sass: {
-        additionalData: `
-          @import "~bootstrap/scss/functions.scss";
-          @import "~bootstrap/scss/variables.scss";
-        `,
-      },
-    },
-  },
 
   pluginOptions: {
     i18n: {
