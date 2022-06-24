@@ -1,9 +1,9 @@
 import axios from "axios";
 
 axios.defaults.headers.post["Access-Control-Allow-Origin"] =
-  "http://localhost:8080";
+  "https://inf-cinema.herokuapp.com";
 const instance = axios.create({
-  baseURL: "http://localhost:8080/api/v1/",
+  baseURL: "https://inf-cinema.herokuapp.com/api/v1/",
   withCredentials: true,
 });
 
