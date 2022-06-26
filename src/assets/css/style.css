@@ -163,11 +163,11 @@ dl:after, ul:after, ol:after{
     .nav_menu > li:first-child .nav_overMenu{padding-left:0}
     .nav_menu > li:first-child .nav_overMenu:before{content:none}
     .nav_menu > li:last-child{width:195px}
-    .nav_menu > li:nth-child(2) > h2{left:193px}
+    .nav_menu > li:nth-child(2) > h2{left:160px}
     /*.nav_menu > li:nth-child(3) > h2{left:160px}*/
     /*.nav_menu > li:nth-child(4) > h2{left:240px}*/
     /*.nav_menu > li:nth-child(5) > h2{left:335px}*/
-    .nav_menu > li:last-child > h2{left:356px}
+    .nav_menu > li:last-child > h2{left:320px}
 
     .nav_menu > li > h2{position:absolute; top:14px}
     .nav_menu > li > h2 > a{font-weight:500; font-size:16px; color:#222; line-height:1.500em;text-decoration: none;}
@@ -190,8 +190,8 @@ dl:after, ul:after, ol:after{
 .nav.fixed .contents h1{display:block; position:absolute; left:0; top:1px; width:70px; height:32px; z-index:3}
 .nav.fixed .contents h1 a{display:block}
 .nav.fixed .contents h1 a img{width:100px; height:30px;margin-top: 7px;}
-.nav.fixed .contents .nav_menu > li:first-child > h2{left:150px}
-.nav.fixed .contents .nav_menu > li:nth-child(2) > h2{left:260px}
+.nav.fixed .contents .nav_menu > li:first-child > h2{left:150px;color: #ffdfa2}
+.nav.fixed .contents .nav_menu > li:nth-child(2) > h2{left:260px;color: #ffdfa2}
 /*.nav.fixed .contents .nav_menu > li:nth-child(3) > h2{left:280px}*/
 /*.nav.fixed .contents .nav_menu > li:nth-child(4) > h2{left:360px}*/
 /*.nav.fixed .contents .nav_menu > li:nth-child(5) > h2{left:455px}*/
