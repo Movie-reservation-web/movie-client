@@ -30,8 +30,8 @@ export default {
     const store = new useStore();
 
     onMounted(async (id = props.id) => {
-      let initData = store.state.movie.initMovieDetail.movieDetail;
-      if (initData.id != id) {
+      let initData = store.state.movie.movieDetail;
+      if (initData == null || (id != null && initData.id != id)) {
         await getMovieDetail(id);
       }
     });

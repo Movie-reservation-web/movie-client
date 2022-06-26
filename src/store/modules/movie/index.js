@@ -1,15 +1,13 @@
 import MovieService from "@/services/movie.service";
 
-const movieChart = JSON.parse(localStorage.getItem("movieChart"));
-const movieDetail = JSON.parse(localStorage.getItem("movieDetail"));
-const initMovieChart = movieChart ? { movieChart } : { movieChart: null };
-const initMovieDetail = movieDetail ? { movieDetail } : { movieDetail: null };
+const movieChart = JSON.parse(sessionStorage.getItem("movieChart"));
+const movieDetail = JSON.parse(sessionStorage.getItem("movieDetail"));
 
 export default {
   namespaced: true,
   state: {
-    initMovieChart,
-    initMovieDetail
+    movieChart: movieChart,
+    movieDetail: movieDetail,
   },
   // Server API 호출
   actions: {
@@ -56,21 +54,21 @@ export default {
       state.movieChart = data;
     },
     GET_MOVIE_DETAIL(state, data) {
-      state.initMovieDetail.movieDetail = data;
+      state.movieDetail = data;
     },
     GET_MOVIE_CHART_FAIL(state) {
       state.movieChart = null;
     },
     GET_MOVIE_DETAIL_FAIL(state) {
-      state.initMovieDetail.movieDetail = null;
+      state.movieDetail = null;
     },
   },
   getters: {
     movieChart(state) {
-      return state.initMovieChart.movieChart;
+      return state.movieChart;
     },
     movieDetail(state) {
-      return state.initMovieDetail.movieDetail;
+      return state.movieDetail;
     },
   },
 };

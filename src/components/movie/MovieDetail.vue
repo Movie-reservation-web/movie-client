@@ -64,7 +64,7 @@
         <template v-for="format in movieDetail.formats" :key="format">
           <a
             href="#"
-            v-if="format.value != '2D'"
+            v-if="format.value === 'IMAX' || format.value === '4DX'"
             :class="format.code"
             title="상세정보 바로가기"
             >{{ format.value }}</a

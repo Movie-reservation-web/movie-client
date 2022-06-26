@@ -1,6 +1,8 @@
 import { createStore } from "vuex";
-import modules from "@/store/modules";
-
+import createVuexPersistedState from "vuex-persistedstate";
+import auth from "@/store/modules/auth";
+import category from "@/store/modules/category";
+import movie from "@/store/modules/movie";
 const store = createStore({
   state() {
     return {
@@ -16,7 +18,18 @@ const store = createStore({
       defaultProfile: require("@/assets/img/default.jpg"),
     };
   },
-  modules,
+  modules: {
+    movie,
+    auth,
+    category,
+  },
+  plugins: [
+    createVuexPersistedState({
+      paths: ["movie"],
+      key: "movieChart", // storate의 item 이름 설정
+      storage: window.sessionStorage,
+    }),
+  ],
 });
 
 export default store;
