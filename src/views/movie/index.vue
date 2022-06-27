@@ -3,11 +3,11 @@
     <div id="contents">
       <div class="wrap-movie-detail" id="select_main">
         <movie-detail
-          v-if="!isPending"
+          v-if="movieDetail && movieDetail.id == id"
           :movieDetail="movieDetail"
         />
         <movie-detail-etc
-          v-if="!isPending"
+          v-if="movieDetail && movieDetail.id == id"
           :movieDetail="movieDetail"
         />
       </div>
