@@ -57,34 +57,6 @@ export default {
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.form-control::-webkit-input-placeholder {
-  /* Chrome/Opera/Safari */
-  color: rgba(0, 0, 0, 0.3);
-}
-
-.form-control::-moz-placeholder {
-  /* Firefox 19+ */
-  color: rgba(0, 0, 0, 0.3);
-}
-
-.form-control:-ms-input-placeholder {
-  /* IE 10+ */
-  color: rgba(0, 0, 0, 0.3);
-}
-
-.form-control:-moz-placeholder {
-  /* Firefox 18- */
-  color: rgba(0, 0, 0, 0.3);
-}
-
-.form-control:focus,
-.form-control:active {
-  outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  border: 1px solid #943939;
-}
-
 .btn {
   cursor: pointer;
   border-radius: 40px;
@@ -100,6 +72,7 @@ export default {
 }
 
 .btn.btn-primary {
+  width: 90%;
   background: #943939;
   border: none;
   color: #ffdfa2;

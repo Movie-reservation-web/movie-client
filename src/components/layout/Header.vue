@@ -3,35 +3,37 @@
     <div class="contents">
       <div class="logo">
         <a href="/">
-          <img :src="logoUrl" alt="logo"/>
+          <img :src="logoUrl" alt="logo" />
         </a>
       </div>
       <ul class="login_wrap">
         <li v-if="!loggedIn">
           <router-link tag="a" to="/login">
-            <img :src="loginLogoUrl" alt="로그인"/>
+            <img :src="loginLogoUrl" alt="로그인" />
             <span>{{ $t("member.login") }}</span>
           </router-link>
         </li>
         <li v-if="!loggedIn">
           <router-link tag="a" to="/sign-up">
-            <img :src="signupLogoUrl" alt="회원가입"/>
+            <img :src="signupLogoUrl" alt="회원가입" />
             <span>{{ $t("member.signUp") }}</span>
           </router-link>
         </li>
         <li v-if="loggedIn">
           <a
             type="button"
+            href="#"
             @click="logout"
             class="hw-btn text-decoration-none"
+            style=""
           >
-            <img :src="logoutLogoUrl" alt="로그아웃"/>
+            <img :src="logoutLogoUrl" alt="로그아웃" />
             <span>{{ $t("member.logout") }}</span>
           </a>
         </li>
         <li>
           <router-link tag="a" to="/sign-up">
-            <img :src="myPageLogoUrl" alt="마이페이지"/>
+            <img :src="myPageLogoUrl" alt="마이페이지" />
             <span>{{ $t("member.myPage") }}</span>
           </router-link>
         </li>
@@ -39,20 +41,20 @@
     </div>
   </div>
   <div class="nav" style="left: 0px">
-    <HeaderNav/>
+    <HeaderNav />
   </div>
 </template>
 
 <script>
-import {computed} from "vue";
-import {useStore} from "vuex";
-import {useRouter} from "vue-router";
+import { computed } from "vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 import HeaderNav from "./HeaderNav";
 
 export default {
   name: "main-header",
   components: {
-    HeaderNav
+    HeaderNav,
   },
   setup() {
     const router = useRouter();
@@ -82,7 +84,7 @@ export default {
     const logout = async () => {
       await store.dispatch("auth/logout");
       if (!store.getters["auth/isLoggedIn"]) {
-        await router.push({name: "Login"});
+        await router.push({ name: "Login" });
       }
     };
     return {
@@ -93,9 +95,9 @@ export default {
       myPageLogoUrl,
       loggedIn,
       logout,
-      loggedInName
+      loggedInName,
     };
-  }
+  },
 };
 </script>
 <style scoped>

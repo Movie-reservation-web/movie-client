@@ -2,8 +2,14 @@
   <div id="container">
     <div id="contents">
       <div class="wrap-movie-detail" id="select_main">
-        <movie-detail v-if="movieDetail" :movieDetail="movieDetail" />
-        <movie-detail-etc v-if="movieDetail" :movieDetail="movieDetail" />
+        <movie-detail
+          v-if="!isPending"
+          :movieDetail="movieDetail"
+        />
+        <movie-detail-etc
+          v-if="!isPending"
+          :movieDetail="movieDetail"
+        />
       </div>
     </div>
   </div>

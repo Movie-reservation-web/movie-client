@@ -18,19 +18,20 @@
                   :label="$t('member.loginId')"
                   v-model="username"
                   :error="''"
-                  class="mt-3"
+                  class="px-3 my-3"
                 ></Input>
                 <PasswordInput
                   :label="$t('member.password')"
                   v-model="password"
                   :error="''"
+                  class="px-3 my-3"
                 >
                 </PasswordInput>
-                <FormButton :label="$t('member.login')" :is-pending="isPending">
+                <FormButton :label="$t('member.login')" :is-pending="isPending" class="px-3">
                 </FormButton>
               </form>
-              <KaKaoLogin></KaKaoLogin>
-              <p class="text-lg-end col">
+              <KaKaoLogin class="px-3"></KaKaoLogin>
+              <p class="text-lg-end col my-3 px-3">
                 <router-link tag="a" to="/find-id" class="mx-2"
                   >{{ $t("member.findId") }}
                 </router-link>
@@ -132,6 +133,7 @@ export default {
 }
 
 .login-wrap .login-form .form-logo img {
+  width: 100%;
   background-color: transparent;
   opacity: 0.9;
   filter: alpha(opacity=90);
@@ -152,6 +154,6 @@ export default {
 
 a,
 a:hover {
-  color: #943939!important;
+  color: #943939 !important;
 }
 </style>

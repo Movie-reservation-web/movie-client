@@ -1,13 +1,13 @@
 <template>
   <div class="form-group">
-    <label class="form-control-placeholder">{{ label }}</label>
+    <label class="form-control-placeholder mb-2">{{ label }}</label>
     <input
       :value="modelValue"
       @input="onInput"
       type="text"
       class="form-control"
       :readonly="isReadOnly"
-    >
+    />
     <div v-if="error" class="text-red">
       {{ error }}
     </div>
@@ -15,38 +15,37 @@
 </template>
 
 <script>
-import { getCurrentInstance } from 'vue'
+import { getCurrentInstance } from "vue";
 
 export default {
   props: {
     label: {
       type: String,
-      required: true
+      required: true,
     },
     error: {
       type: String,
-      required: true
+      required: true,
     },
     modelValue: {
       type: String,
-      required: true
+      required: true,
     },
     isReadOnly: {
       type: Boolean,
-      defaults: false
-    }
+      defaults: false,
+    },
   },
-  setup () {
-    const { emit } = getCurrentInstance()
+  setup() {
+    const { emit } = getCurrentInstance();
     const onInput = (e) => {
-      emit('update:modelValue', e.target.value)
-    }
+      emit("update:modelValue", e.target.value);
+    };
     return {
-      onInput
-    }
-  }
-}
-
+      onInput,
+    };
+  },
+};
 </script>
 <style scoped>
 .form-group {
@@ -54,6 +53,7 @@ export default {
 }
 
 .form-group label {
+  display: block;
   text-transform: uppercase;
   font-weight: 700;
   font-size: 12px;
@@ -62,7 +62,9 @@ export default {
 }
 
 .form-control {
-  height: 52px;
+  width: 95%;
+  display: inline-flex;
+  height: 45px;
   background: #fff;
   color: #000;
   font-size: 16px;
@@ -99,5 +101,4 @@ export default {
   box-shadow: none;
   border: 1px solid #943939;
 }
-
 </style>
