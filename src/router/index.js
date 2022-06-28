@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views";
 import Login from "@/views/login";
-import store from "@/store";
+// import store from "@/store";
 
 const routes = [
   {
-    path: "",
+    path: "/",
     name: "Home",
     component: Home,
   },
@@ -31,23 +31,23 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  scrollBehavior(){
-    return{top: 0}
+  scrollBehavior() {
+    return { top: 0 };
   },
   routes,
 });
-router.beforeEach((to, from, next) => {
-  if (to.matched.some((record) => record.meta.requiresAuth)) {
-    const isLogin = store.getters["auth/isLoggedIn"];
-    if (!isLogin) {
-      next({
-        name: "Login",
-      });
-    } else {
-      next();
-    }
-  } else {
-    next();
-  }
-});
+// router.beforeEach((to, from, next) => {
+//   if (to.matched.some((record) => record.meta.requiresAuth)) {
+//     const isLogin = store.getters["auth/isLoggedIn"];
+//     if (!isLogin) {
+//       next({
+//         name: "Login",
+//       });
+//     } else {
+//       next();
+//     }
+//   } else {
+//     next();
+//   }
+// });
 export default router;
