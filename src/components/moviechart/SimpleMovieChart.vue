@@ -4,17 +4,13 @@
       <div class="movieChartBeScreen_btn_wrap">
         <div class="tabBtn_wrap">
           <h3>
-            <a
-              href="#none"
-              :class="{ active: isActive }"
-              @click="switchMovieChart"
-            >
+            <a href="/" :class="{ active: isActive }" @click="switchMovieChart">
               무비차트
             </a>
           </h3>
           <h3>
             <a
-              href="#none"
+              href="/"
               :class="{ active: !isActive }"
               @click="switchMovieChart"
             >
@@ -22,14 +18,15 @@
             </a>
           </h3>
         </div>
-        <a
-          href="/movie-chart"
+        <router-link
+          tag="a"
+          to="/movie-chart"
           id="btn_allView_Movie"
           class="btn_allView"
           style="text-decoration: none; color: inherit"
         >
           전체보기
-        </a>
+        </router-link>
       </div>
 
       <div class="carousel movieChart_list" id="movieChart_list">
