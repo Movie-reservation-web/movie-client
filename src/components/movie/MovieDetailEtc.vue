@@ -27,7 +27,9 @@
               </div>
               <div class="box-contents">
                 <ul class="writerinfo">
-                  <li class="writer-name"><a>{{ review.writer }}</a></li>
+                  <li class="writer-name">
+                    <a>{{ review.writer }}</a>
+                  </li>
                   <li class="writer-etc">
                     <span class="day">{{ review.writeDate }}</span>
                     <span class="like point_like"
@@ -43,7 +45,7 @@
           </ul>
         </div>
       </div>
-      <pagination
+      <Pagination
         :number-of-pages="numberOfPages"
         :current-page="currentPage"
         :content-limit="contentLimit"
@@ -66,7 +68,7 @@ export default {
   name: "movie-detail-etc",
   components: {
     Pagination,
-    ReviewSort,
+    "review-sort": ReviewSort,
   },
   props: {
     movieDetail: Object,
@@ -101,7 +103,10 @@ export default {
     getSortTypes();
 
     // review
-    const getReviews = async (page = currentPage.value, sort=sortType.value) => {
+    const getReviews = async (
+      page = currentPage.value,
+      sort = sortType.value
+    ) => {
       currentPage.value = page;
       try {
         const res = await ReviewService.getReview(

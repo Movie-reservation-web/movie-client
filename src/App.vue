@@ -4,13 +4,13 @@
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css"
   />
   <div id="app">
-    <HeaderAd />
+    <header-ad />
     <div id="header" class="header">
-      <Header />
+      <main-header />
     </div>
     <router-view />
     <div id="footer">
-      <Footer />
+      <main-footer />
     </div>
   </div>
 </template>
@@ -22,12 +22,12 @@ import Footer from "@/components/layout/Footer.vue";
 import "@/assets/css/style.css";
 
 export default {
-  name: "App",
+  name: "app",
   components: {
-    HeaderAd,
-    Header,
-    Footer
-  }
+    "header-ad": HeaderAd,
+    "main-header": Header,
+    "main-footer": Footer,
+  },
 };
 </script>
 <style scoped>

@@ -20,7 +20,7 @@ import MovieChartCard from "@/components/moviechart/MovieChartCard";
 export default {
   name: "movie-chart-list",
   components: {
-    MovieChartCard,
+    "movie-chart-card": MovieChartCard,
   },
   props: {
     movieChart: Array,

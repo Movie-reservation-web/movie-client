@@ -38,15 +38,12 @@
                 :error="''"
                 class="mt-3"
               ></Input>
-              <FormButton
-                :label="$t('member.login')"
-                :is-pending="isPending"
-              >
+              <FormButton :label="$t('member.login')" :is-pending="isPending">
               </FormButton>
             </form>
             <p class="text-center">
               <router-link tag="a" to="/sign-up"
-              >{{ $t('member.signUp') }}
+                >{{ $t("member.signUp") }}
               </router-link>
             </p>
           </div>
@@ -57,19 +54,18 @@
 </template>
 
 <script>
-import {useLogin} from '@/composables/login'
-import {computed, ref} from 'vue'
-import {useStore} from 'vuex'
-import {useRouter} from 'vue-router'
-import Input from '@/components/slot/Input'
-import PasswordInput from '@/components/slot/PasswordInput'
-import FormButton from '@/components/slot/FormButton'
-import ErrorField from '@/components/slot/ErrorField'
-import FormLogo from '@/components/slot/FormLogo'
-import RadioInput from '@/components/slot/RadioInput'
+import { useLogin } from "@/composables/login";
+import { computed, ref } from "vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+import Input from "@/components/slot/Input";
+import PasswordInput from "@/components/slot/PasswordInput";
+import FormButton from "@/components/slot/FormButton";
+import ErrorField from "@/components/slot/ErrorField";
+import FormLogo from "@/components/slot/FormLogo";
 
 export default {
-  name: 'RegisterUserInfo',
+  name: "RegisterUserInfo",
   components: {
     FormLogo,
     ErrorField,
@@ -78,27 +74,23 @@ export default {
     FormButton,
   },
   setup() {
-    const {
-      error,
-      login,
-      isPending
-    } = useLogin()
-    const store = new useStore()
-    const router = useRouter()
+    const { error, login, isPending } = useLogin();
+    const store = new useStore();
+    const router = useRouter();
 
-    const username = ref('')
-    const password = ref('')
+    const username = ref("");
+    const password = ref("");
 
     const handleSubmit = async () => {
-      await login(username.value, password.value)
-      if (store.getters['auth/isLoggedIn']) {
-        await router.push({name: 'Home'})
+      await login(username.value, password.value);
+      if (store.getters["auth/isLoggedIn"]) {
+        await router.push({ name: "Home" });
       }
-    }
+    };
 
     const backgroundUrl = computed(() => {
-      return store.state.loginBackground
-    })
+      return store.state.loginBackground;
+    });
 
     return {
       backgroundUrl,
@@ -106,10 +98,10 @@ export default {
       password,
       handleSubmit,
       error,
-      isPending
-    }
-  }
-}
+      isPending,
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -122,8 +114,8 @@ export default {
   width: 30%;
   padding-top: 40%;
   box-shadow: rgba(19, 87, 98, 0.4) 5px 5px, rgba(19, 87, 98, 0.3) 10px 10px,
-  rgba(19, 87, 98, 0.2) 15px 15px, rgba(19, 87, 98, 0.1) 20px 20px,
-  rgba(19, 87, 98, 0.05) 25px 25px;
+    rgba(19, 87, 98, 0.2) 15px 15px, rgba(19, 87, 98, 0.1) 20px 20px,
+    rgba(19, 87, 98, 0.05) 25px 25px;
   border-radius: 10px;
 }
 
@@ -140,5 +132,4 @@ export default {
   height: 0;
   width: 0;
 }
-
 </style>

@@ -66,7 +66,6 @@
 <script>
 export default {
   name: "video-slot",
-  components: {},
   data() {
     return {
       isStop: false,

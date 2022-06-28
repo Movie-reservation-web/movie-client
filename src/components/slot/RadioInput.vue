@@ -20,7 +20,6 @@
 <script>
 
 export default {
-  name: 'RadioInput',
   props: {
     label: {
       type: String,

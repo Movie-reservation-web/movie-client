@@ -15,11 +15,8 @@
 </template>
 
 <script>
-
 export default {
-  name: "header-ad"
+  name: "header-ad",
 };
 </script>
-<style>
-
-</style>
+<style></style>

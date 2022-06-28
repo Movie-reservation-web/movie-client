@@ -1,7 +1,7 @@
 <template>
   <li v-if="movieProfile">
     <div class="box-image">
-      <strong class="rank">No.{{ index+1 }}</strong>
+      <strong class="rank">No.{{ index + 1 }}</strong>
       <router-link
         tag="a"
         :to="{
@@ -60,7 +60,7 @@ import moment from "moment";
 export default {
   name: "movie-chart-card",
   props: {
-    index:Number,
+    index: Number,
     movieProfile: Object,
   },
   setup() {

@@ -30,7 +30,7 @@
                 <FormButton :label="$t('member.login')" :is-pending="isPending" class="px-3">
                 </FormButton>
               </form>
-              <KaKaoLogin class="px-3"></KaKaoLogin>
+              <KakaoLogin class="px-3" />
               <p class="text-lg-end col my-3 px-3">
                 <router-link tag="a" to="/find-id" class="mx-2"
                   >{{ $t("member.findId") }}
@@ -64,7 +64,7 @@ import PasswordInput from "@/components/slot/PasswordInput";
 import FormButton from "@/components/slot/FormButton";
 import ErrorField from "@/components/slot/ErrorField";
 import FormLogo from "@/components/slot/FormLogo";
-import KaKaoLogin from "@/components/oauth/KaKaoLogin";
+import KakaoLogin from "@/components/oauth/KakaoLogin";
 import CategoryService from "@/services/category.service";
 
 export default {
@@ -75,7 +75,7 @@ export default {
     Input,
     PasswordInput,
     FormButton,
-    KaKaoLogin,
+    KakaoLogin,
   },
   setup() {
     const { error, login, isPending } = useLogin();

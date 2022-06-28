@@ -23,10 +23,10 @@ import { computed, onMounted } from "vue";
 import { useStore } from "vuex";
 
 export default {
-  name: "movie",
+  name: "Movie",
   components: {
-    MovieDetail,
-    MovieDetailEtc,
+    "movie-detail": MovieDetail,
+    "movie-detail-etc": MovieDetailEtc,
   },
   props: {
     id: String,

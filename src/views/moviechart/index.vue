@@ -25,8 +25,8 @@ import CategoryService from "@/services/category.service";
 export default {
   name: "movie-chart",
   components: {
-    MovieChartHeader,
-    MovieChartList,
+    "movie-chart-header": MovieChartHeader,
+    "movie-chart-list": MovieChartList,
   },
   setup() {
     const store = new useStore();

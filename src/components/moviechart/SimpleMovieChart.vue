@@ -50,7 +50,7 @@ import { useMovie } from "@/composables/movie";
 export default {
   name: "simple-movie-chart",
   components: {
-    MovieChartSlide,
+    "movie-chart-slide": MovieChartSlide,
   },
   setup() {
     const isActive = ref(true);

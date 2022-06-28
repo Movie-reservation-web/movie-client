@@ -1,7 +1,7 @@
 <template>
   <div class="contents">
     <h1>
-      <a href="/" tabindex="-1"><img :src="logoUrl" alt="CGV" /></a>
+      <a href="/" tabindex="-1"><img :src="logoUrl" alt="CGV"/></a>
     </h1>
     <ul class="nav_menu">
       <li>
@@ -12,8 +12,8 @@
           <dt>
             <h2>
               <a href="/movies/?lt=1&amp;ft=0" tabindex="-1">{{
-                $t("menu.movie")
-              }}</a>
+                  $t("menu.movie")
+                }}</a>
             </h2>
           </dt>
           <dd>
@@ -43,7 +43,7 @@
       <li>
         <h2>
           <a href="/ticket/"
-            ><strong>{{ $t("menu.ticket") }}</strong></a
+          ><strong>{{ $t("menu.ticket") }}</strong></a
           >
         </h2>
         <dl class="nav_overMenu" style="display: none">
@@ -70,10 +70,11 @@
 
 <script>
 import $ from "jquery";
-import { useStore } from "vuex";
-import { computed } from "vue";
+import {useStore} from "vuex";
+import {computed} from "vue";
 
 export default {
+  name: "header-nav",
   setup() {
     const store = useStore();
     const logoUrl = computed(() => {
@@ -89,11 +90,11 @@ export default {
         mouseenter: function (e) {
           var target = e.target;
           $(target)
-            .parents(".nav_menu")
-            .find(".nav_overMenu")
-            .slideDown(function () {
-              $(".nav").addClass("active");
-            });
+              .parents(".nav_menu")
+              .find(".nav_overMenu")
+              .slideDown(function () {
+                $(".nav").addClass("active");
+              });
         },
         click: function () {
           if (!$(".nav").hasClass("active")) {
@@ -107,10 +108,10 @@ export default {
       $(".nav").on({
         mouseleave: function () {
           $(this)
-            .find(".nav_overMenu")
-            .slideUp(200, function () {
-              $(".nav").removeClass("active");
-            });
+              .find(".nav_overMenu")
+              .slideUp(200, function () {
+                $(".nav").removeClass("active");
+              });
         },
       });
 
@@ -136,9 +137,9 @@ export default {
           - GNB가 fixed 되었을때 좌우 스크롤 되게 처리
           */
           if ($(".nav").hasClass("fixed")) {
-            $(".nav").css({ left: -1 * scrollL });
+            $(".nav").css({left: -1 * scrollL});
           } else {
-            $(".nav").css({ left: 0 });
+            $(".nav").css({left: 0});
           }
           /* E > GNB fixed 좌우 스크롤 */
           /* S GNB fixed */

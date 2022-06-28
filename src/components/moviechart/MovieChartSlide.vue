@@ -27,7 +27,7 @@ export default {
     Carousel,
     Slide,
     Navigation,
-    SimpleMovieChartCard,
+    "simple-movie-chart-card": SimpleMovieChartCard,
   },
   data: () => ({
     // carousel settings

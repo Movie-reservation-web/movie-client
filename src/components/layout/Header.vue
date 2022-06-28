@@ -41,7 +41,7 @@
     </div>
   </div>
   <div class="nav" style="left: 0px">
-    <HeaderNav />
+    <header-nav />
   </div>
 </template>
 
@@ -54,7 +54,7 @@ import HeaderNav from "./HeaderNav";
 export default {
   name: "main-header",
   components: {
-    HeaderNav,
+    "header-nav": HeaderNav,
   },
   setup() {
     const router = useRouter();

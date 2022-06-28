@@ -12,7 +12,10 @@ import VideoSlot from "@/components/slot/VideoSlot";
 import SimpleMovieChart from "@/components/moviechart/SimpleMovieChart";
 export default {
   name: "Home",
-  components: { VideoSlot, SimpleMovieChart },
+  components: {
+    "video-slot": VideoSlot,
+    "simple-movie-chart": SimpleMovieChart,
+  },
   setup() {
     // const { error, payment, isPending } = usePayment();
     const amount = ref(10000);

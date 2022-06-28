@@ -10,8 +10,6 @@ import { computed } from "vue";
 import { useStore } from "vuex";
 
 export default {
-  name: "KaKaoLogin",
-  components: {},
   props: {
     socialType: String,
   },
